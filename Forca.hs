@@ -1,3 +1,6 @@
+module Forca (imagensBonecoForca, imagemForca, numeroMaxErros, mostrarPalavra, tentarLetra, 
+				sorteiaPalavra, jogo, main) where
+
 import Data.List
 import System.IO
 import Data.Char
