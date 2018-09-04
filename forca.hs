@@ -6,6 +6,8 @@ import System.Random (randomIO)
 import Control.Applicative
 import Path_forca
 
+type LetrasTentadas = [Char]
+
 --Matriz com imagens dos bonecos da forca em uma matriz transposta
 imagensBonecoForca :: [[String]]
 imagensBonecoForca =
@@ -16,7 +18,7 @@ imagensBonecoForca =
 
 --Função para renderizar boneco na forca, de acordo com indice, que receberá numero de erros
 imagemForca :: Int -> [String]
-imagemForca indice = 
+imagemForca indice =
 	"-----------" :
 	"|    |" :
 	map ("|   " ++) imagem
@@ -29,10 +31,18 @@ numeroMaxErros = length imagensBonecoForca - 1
 mostrarPalavra :: String -> String
 mostrarPalavra palavra = intersperse ' ' [if a `elem` ['a'..'z'] then '_' else a | a <- palavra]
 
-tentarLetra :: String -> Char -> Int -> IO ()
-tentarLetra palavra letra tentativas
-	| letra `elem` palavra 	= jogo [if letra == a then toUpper letra else a | a <- palavra] tentativas
-	| otherwise = jogo palavra (tentativas -1)
+tentarLetra :: String -> Char -> Int -> LetrasTentadas -> IO ()
+tentarLetra palavra letra tentativas letrasTentadas
+	| letra `elem` palavra 	= do
+		let letras = toUpper letra : letrasTentadas
+		jogo [if letra == a then toUpper letra else a | a <- palavra] tentativas letras
+	| toUpper letra `elem` letrasTentadas = do
+		putStrLn "Voce já tentou essa letra! "
+		putStrLn $ letrasTentadas
+		jogo palavra tentativas letrasTentadas
+	| otherwise = do
+		let letras = toUpper letra : letrasTentadas
+		jogo palavra (tentativas - 1) letras
 
 -- Esta funcao faz um sorteio de uma palvra dentro de um arquivo .txt de forma aleatoria
 sorteiaPalavra :: IO[Char]
@@ -43,14 +53,14 @@ sorteiaPalavra = do
 	numeroAleatorio <- randomIO
 	let palavraAleatoria = palavras !! (numeroAleatorio `mod` numeroPalavras)
 	return $ palavraAleatoria
-	where 
+	where
 		palavraValida palavra =
 			'\'' `notElem` palavra &&
 			map toLower palavra == palavra
 
 -- Funcao que realiza o jogo e o loop do jogo, verificando se ainda restam numero de tentativas e apresentando imagem da forca
-jogo :: String -> Int -> IO ()
-jogo palavra tentativas
+jogo :: String -> Int -> LetrasTentadas -> IO ()
+jogo palavra tentativas letrasTentadas
 	| palavra == map toUpper palavra = do
 		putStrLn $ mostrarPalavra palavra
 		putStrLn "Voce Ganhou!"
@@ -63,7 +73,7 @@ jogo palavra tentativas
 		putStrLn $ mostrarPalavra palavra
 		putStr "Digite uma letra: "
 		tentativaDeLetra <- getLine
-		tentarLetra palavra (head tentativaDeLetra) tentativas
+		tentarLetra palavra (head tentativaDeLetra) tentativas letrasTentadas
 
 -- Inicia o jogo
 main :: IO()
@@ -71,5 +81,6 @@ main = do
 	hSetBuffering stdout NoBuffering --
 	putStrLn "Bem vindo ao Jogo da Forca"
 	palavra <- sorteiaPalavra
-	jogo (map toLower palavra) numeroMaxErros
-	putStrLn "Obrigado por jogar! :)"		
+	let letras = []
+	jogo (map toLower palavra) numeroMaxErros letras
+	putStrLn "Obrigado por jogar! :)"
