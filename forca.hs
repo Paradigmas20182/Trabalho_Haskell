@@ -5,8 +5,18 @@ import Data.List (transpose)
 import System.Random (randomIO)
 import Control.Applicative
 import Path_forca
+import Control.Exception
+import System.IO.Error
+import System.Process
+import Data.Function
+import Data.String
 
+-- type Jogadores = [String]
 type LetrasTentadas = [Char]
+type Nome = String
+-- type Pontuacao = Int
+-- data Jogador = Jogador Nome Pontuacao
+-- 					deriving (Show, Read)
 
 --Matriz com imagens dos bonecos da forca em uma matriz transposta
 imagensBonecoForca :: [[String]]
@@ -73,14 +83,40 @@ jogo palavra tentativas letrasTentadas
 		putStrLn $ mostrarPalavra palavra
 		putStr "Digite uma letra: "
 		tentativaDeLetra <- getLine
+
 		tentarLetra palavra (head tentativaDeLetra) tentativas letrasTentadas
+
+-- função que recebe uma String e retorna uma IO String
+getString :: String -> IO String
+getString str = do
+			putStr str
+			res <- getLine
+			return res
+
+
+getPlayers :: IO[String]
+getPlayers = do
+	arq <- readFile "dados.txt"
+	let players = lines arq
+	return $ players
 
 -- Inicia o jogo
 main :: IO()
 main = do
-	hSetBuffering stdout NoBuffering --
+	hSetBuffering stdout NoBuffering
+
+	players <- getPlayers
+
 	putStrLn "Bem vindo ao Jogo da Forca"
 	palavra <- sorteiaPalavra
+	jogador1 <- getString"\nDigite o nome do jogador: "
+	putStrLn jogador1
+	if jogador1 `elem` players then do
+	 	putStrLn "\nJogador encontrado"
+	else do
+		putStrLn "\nNovo jogador! Seja bem vindo!!"
+		appendFile "dados.txt" (jogador1 ++ "\n")
+
 	let letras = []
 	jogo (map toLower palavra) numeroMaxErros letras
 	putStrLn "Obrigado por jogar! :)"
