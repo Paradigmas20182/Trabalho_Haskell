@@ -1,5 +1,5 @@
 module Forca (imagensBonecoForca, imagemForca, numeroMaxErros, mostrarPalavra, tentarLetra, 
-				sorteiaPalavra, jogo, main) where
+				sorteiaPalavra, jogo, inicio) where
 
 import Data.List
 import System.IO
@@ -69,8 +69,8 @@ jogo palavra tentativas
 		tentarLetra palavra (head tentativaDeLetra) tentativas
 
 -- Inicia o jogo
-main :: IO()
-main = do
+inicio :: IO()
+inicio = do
 	hSetBuffering stdout NoBuffering --
 	putStrLn "Bem vindo ao Jogo da Forca"
 	palavra <- sorteiaPalavra
