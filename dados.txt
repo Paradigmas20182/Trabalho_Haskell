@@ -1,3 +1,12 @@
-Lucas
-Cleber
-Siqueira
+Jogador {nome = "Bruno", pontuacao = 20}
+Jogador {nome = "Jaum", pontuacao = 20}
+Jogador {nome = "Jaum", pontuacao = 20}
+Jogador {nome = "Siqueira", pontuacao = 20}
+Jogador {nome = "Lucas", pontuacao = 10}
+Jogador {nome = "Siqueira", pontuacao = 20}
+Jogador {nome = "Siqueira", pontuacao = 20}
+Jogador {nome = "Lucas", pontuacao = 10}
+Jogador {nome = "Lucas", pontuacao = 10}
+Jogador {nome = "Jaum", pontuacao = 20}
+Jogador {nome = "Jaum", pontuacao = 20}
+Jogador {nome = "Cenoura", pontuacao = 20}
