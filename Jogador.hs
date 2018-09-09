@@ -1,4 +1,4 @@
--- module Jogador where
+module Jogador where
 
 import System.IO
 
@@ -30,14 +30,10 @@ salvaJogadores jogadores = do
   writeFile "dados.txt" (geraString jogadores "")
   putStrLn "Jogadores salvos com sucesso!"
 
-main :: IO ()
-main = do
-  -- let player = "Jogador {nome = \"Lucas\", pontuacao = 10}"
-  -- let testa = player:[]
-  -- let player2 = Jogador { nome="Cenoura" , pontuacao=20 }
-  -- let teste = player2:resultado
+mainJogador :: String -> IO ()
+mainJogador jogador = do
 
-  let player2 = Jogador { nome="Bruno" , pontuacao=20 }
+  let player2 = Jogador { nome=jogador , pontuacao=20 }
 
   jogadores <- carregaJogadores
   let resultado = converte jogadores []
@@ -49,5 +45,5 @@ main = do
   putStrLn $ show $ head teste
   putStrLn $ show $ last teste
 
-  salvaJogadores teste
+  -- salvaJogadores teste
   putStrLn "Funciona!!!"

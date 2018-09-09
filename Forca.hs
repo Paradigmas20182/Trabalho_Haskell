@@ -1,4 +1,4 @@
-module Forca (imagensBonecoForca, imagemForca, numeroMaxErros, mostrarPalavra, tentarLetra, 
+module Forca (imagensBonecoForca, imagemForca, numeroMaxErros, mostrarPalavra, tentarLetra,
 				sorteiaPalavra, jogo, inicio) where
 
 import Data.List
@@ -13,6 +13,7 @@ import System.IO.Error
 import System.Process
 import Data.Function
 import Data.String
+import Jogador
 
 -- type Jogadores = [String]
 type LetrasTentadas = [Char]
@@ -112,11 +113,12 @@ inicio = do
 	palavra <- sorteiaPalavra
 	jogador1 <- getString"\nDigite o nome do jogador: "
 	putStrLn jogador1
-	if jogador1 `elem` players then do
-	 	putStrLn "\nJogador encontrado"
-	else do
-		putStrLn "\nNovo jogador! Seja bem vindo!!"
-		appendFile "dados.txt" (jogador1 ++ "\n")
+	-- if jogador1 `elem` players then do
+	--  	putStrLn "\nJogador encontrado"
+	-- else do
+	-- 	putStrLn "\nNovo jogador! Seja bem vindo!!"
+	-- 	appendFile "dados.txt" (jogador1 ++ "\n")
+	mainJogador jogador1
 
 	let letras = []
 	jogo (map toLower palavra) numeroMaxErros letras
