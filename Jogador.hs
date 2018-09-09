@@ -39,10 +39,5 @@ mainJogador jogador = do
   let resultado = converte jogadores []
 
   let teste = player2:resultado
-
-  putStrLn $ show $ head resultado
-  putStrLn $ show $ last resultado
-  putStrLn $ show $ head teste
-  putStrLn $ show $ last teste
-
+  
   salvaJogadores teste

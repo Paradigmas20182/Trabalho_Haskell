@@ -1,3 +1,5 @@
+module Ranking where
+
 import Jogador
 import Data.List
 import System.IO
