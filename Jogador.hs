@@ -1,6 +1,8 @@
 module Jogador where
 
 import System.IO
+import System.Directory
+
 
 data Jogador = Jogador { nome :: String
                        , pontuacao :: Int
@@ -27,17 +29,13 @@ carregaJogadores = do
 
 salvaJogadores :: [Jogador] -> IO ()
 salvaJogadores jogadores = do
-  writeFile "dados.txt" (geraString jogadores "")
-  putStrLn "Jogadores salvos com sucesso!"
+  writeFile "temp.txt" (geraString jogadores "")
+  removeFile "dados.txt"
+  renameFile "temp.txt" "dados.txt"
+  putStrLn "Jogador salvo com sucesso!"
 
-mainJogador :: String -> IO ()
-mainJogador jogador = do
-
-  let player2 = Jogador { nome=jogador , pontuacao=20 }
-
-  jogadores <- carregaJogadores
-  let resultado = converte jogadores []
-
-  let teste = player2:resultado
-  
-  salvaJogadores teste
+existeJogador :: [Jogador] -> String-> Bool
+existeJogador [] _ = False
+existeJogador ((Jogador n p):xs) nome
+      | (n == nome) = True
+      | otherwise = existeJogador xs nome

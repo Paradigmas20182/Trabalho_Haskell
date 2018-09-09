@@ -15,6 +15,7 @@ import Data.Function
 import Data.String
 import Jogador
 
+import System.Exit
 -- type Jogadores = [String]
 type LetrasTentadas = [Char]
 type Nome = String
@@ -101,19 +102,26 @@ getString str = do
 inicio :: IO()
 inicio = do
 	hSetBuffering stdout NoBuffering
-	players <- carregaJogadores
-	putStrLn "Bem vindo ao Jogo da Forca"
+	putStrLn "\n -- Bem vindo ao Jogo da Forca --"
 	palavra <- sorteiaPalavra
 	jogador1 <- getString"\nDigite o nome do jogador: "
-	putStrLn jogador1
-	-- if jogador1 `elem` players then do
-	--  	putStrLn "\nJogador encontrado"
-	-- else do
-	-- 	putStrLn "\nNovo jogador! Seja bem vindo!!"
-	-- 	appendFile "dados.txt" (jogador1 ++ "\n")
+	
+	let novo_jogador = Jogador { nome=jogador1 , pontuacao= 0 }
 
-	mainJogador jogador1
+	jogadores <- carregaJogadores
+	let lista_jogadores = converte jogadores []
 
-	let letras = []
-	jogo (map toLower palavra) numeroMaxErros letras
-	putStrLn "Obrigado por jogar! :)"
+	if (existeJogador lista_jogadores jogador1) then do
+		putStr"Bem-Vindo novamente "
+		putStrLn jogador1
+
+		let letras = []
+		jogo (map toLower palavra) numeroMaxErros letras
+		putStrLn "Obrigado por jogar! :)"
+			
+	else do 
+		let nova_lista = novo_jogador:lista_jogadores
+		salvaJogadores nova_lista
+		let letras = []
+		jogo (map toLower palavra) numeroMaxErros letras
+		putStrLn "Obrigado por jogar! :)"
