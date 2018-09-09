@@ -30,7 +30,7 @@ salvaJogadores jogadores = do
   writeFile "dados.txt" (geraString jogadores "")
   putStrLn "Jogadores salvos com sucesso!"
 
-mainJogador :: String -> IO [Jogador]
+mainJogador :: String -> IO ()
 mainJogador jogador = do
 
   let player2 = Jogador { nome=jogador , pontuacao=20 }
@@ -46,5 +46,3 @@ mainJogador jogador = do
   putStrLn $ show $ last teste
 
   salvaJogadores teste
-
-  return $ teste

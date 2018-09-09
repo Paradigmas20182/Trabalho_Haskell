@@ -1,4 +1,2 @@
 Jogador {nome = "lucas", pontuacao = 20}
-Jogador {nome = "Bruno", pontuacao = 20}
-Jogador {nome = "Jaum", pontuacao = 20}
 Jogador {nome = "Cenoura", pontuacao = 20}
