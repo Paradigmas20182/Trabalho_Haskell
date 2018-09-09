@@ -97,18 +97,11 @@ getString str = do
 			res <- getLine
 			return res
 
-
-getPlayers :: IO[String]
-getPlayers = do
-	arq <- readFile "dados.txt"
-	let players = lines arq
-	return $ players
-
 -- Inicia o jogo
 inicio :: IO()
 inicio = do
 	hSetBuffering stdout NoBuffering
-	players <- getPlayers
+	players <- carregaJogadores
 	putStrLn "Bem vindo ao Jogo da Forca"
 	palavra <- sorteiaPalavra
 	jogador1 <- getString"\nDigite o nome do jogador: "
@@ -118,6 +111,7 @@ inicio = do
 	-- else do
 	-- 	putStrLn "\nNovo jogador! Seja bem vindo!!"
 	-- 	appendFile "dados.txt" (jogador1 ++ "\n")
+
 	mainJogador jogador1
 
 	let letras = []
