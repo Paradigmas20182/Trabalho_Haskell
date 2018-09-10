@@ -1,0 +1,9 @@
+Jogador {nome = "migue", pontuacao = 0}
+Jogador {nome = "u\DELeu", pontuacao = 0}
+Jogador {nome = "LOLO", pontuacao = 0}
+Jogador {nome = "Bruno", pontuacao = 10}
+Jogador {nome = "Cenoura", pontuacao = 0}
+Jogador {nome = "lucas", pontuacao = 0}
+Jogador {nome = "LULA", pontuacao = 0}
+Jogador {nome = "Teste", pontuacao = 0}
+Jogador {nome = "eu", pontuacao = 0}
