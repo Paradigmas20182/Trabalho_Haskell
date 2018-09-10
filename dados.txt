@@ -1,6 +1,6 @@
 Jogador {nome = "Teste", pontuacao = 0}
 Jogador {nome = "LULA", pontuacao = 0}
-Jogador {nome = "lucas", pontuacao = 20}
-Jogador {nome = "Cenoura", pontuacao = 20}
-Jogador {nome = "Bruno", pontuacao = 20}
+Jogador {nome = "lucas", pontuacao = 0}
+Jogador {nome = "Cenoura", pontuacao = 0}
+Jogador {nome = "Bruno", pontuacao = 10}
 Jogador {nome = "LOLO", pontuacao = 0}
