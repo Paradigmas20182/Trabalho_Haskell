@@ -2,17 +2,7 @@ module Ranking where
 
 import Jogador
 import Data.List
-import System.IO
-import Data.Char
-import Data.List (transpose)
-import System.Random (randomIO)
-import Control.Applicative
-import Path_forca
-import Control.Exception
-import System.IO.Error
-import System.Process
 import Data.Function
-import Data.String
 
 exibirRanking :: [Jogador] -> IO ()
 exibirRanking [] = return ()
