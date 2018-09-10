@@ -112,7 +112,7 @@ inicio = do
 	putStrLn "\n -- Bem vindo ao Jogo da Forca --"
 	palavra <- sorteiaPalavra
 	jogador1 <- getString"\nDigite o nome do jogador: "
-	
+
 	let novo_jogador = Jogador { nome = jogador1 , pontuacao = 0 }
 
 	jogadores <- carregaJogadores
@@ -125,10 +125,10 @@ inicio = do
 		let letras = []
 		jogo (map toLower palavra) numeroMaxErros letras lista_jogadores jogador1
 		putStrLn "Obrigado por jogar! :)"
-			
-	else do 
+
+	else do
 		let nova_lista = novo_jogador:lista_jogadores
 		salvaJogadores nova_lista
 		let letras = []
-		jogo (map toLower palavra) numeroMaxErros letras lista_jogadores jogador1
+		jogo (map toLower palavra) numeroMaxErros letras nova_lista jogador1
 		putStrLn "Obrigado por jogar! :)"
