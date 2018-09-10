@@ -2,10 +2,10 @@
 Primeiro trabalho da disciplina de Paradigmas.
 
 ### Integrantes do Grupo:
-	- Bruno Oliveira Dantas
-	- João Vitor Ramos de Souza
-	- Lucas Siqueira Rodrigues
-	- Lucas Pereira 
+	- Bruno Oliveira Dantas 15/0120371
+	- João Vitor Ramos de Souza 15/0132590
+	- Lucas Siqueira Rodrigues 15/0137567
+	- Lucas Pereira de Andrade Macêdo 15/0137397
 
 ### Como rodar:
 	- Clone o projeto em sua máquina;
