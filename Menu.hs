@@ -12,9 +12,10 @@ menu = do { putStrLn "\n ### Menu Principal do Jogo ### \n";
 	putStrLn "Digite 0 para sair";
 	putStrLn "Opção: ";
         opcao <- getLine;
-        case opcao of "1" -> do
-        			inicio;
-        			menu;
+	case opcao of "1" -> do
+			inicio;
+			menu;
+			
 
 	              "2" -> do
 	              	putStrLn "\n ### Ranking ### \n";
@@ -22,6 +23,6 @@ menu = do { putStrLn "\n ### Menu Principal do Jogo ### \n";
 	              	menu;
 
 	              "0" -> do
-					putStrLn ("\nBye! Obrigado por jogar ;-)\n")
-					return ()
+			putStrLn ("\nBye! Obrigado por jogar ;-)\n")
+			return ()
 	}

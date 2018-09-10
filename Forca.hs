@@ -62,8 +62,8 @@ tentarLetra palavra letra tentativas letrasTentadas lista_jogadores jogador1
 -- Esta funcao faz um sorteio de uma palvra dentro de um arquivo .txt de forma aleatoria
 sorteiaPalavra :: IO[Char]
 sorteiaPalavra = do
-	discionario <- readFile discionarioPalavras
-	let palavras = filter palavraValida $ lines discionario
+	dicionario <- selecionaCategoria
+	let palavras = filter palavraValida $ lines dicionario
 	let numeroPalavras = length palavras
 	numeroAleatorio <- randomIO
 	let palavraAleatoria = palavras !! (numeroAleatorio `mod` numeroPalavras)
