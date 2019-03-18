@@ -18,3 +18,5 @@ Primeiro trabalho da disciplina de Paradigmas.
 ### Este Trabalho teve como referências:
 	- Forca - Haskell - Pedro e William, alunos da mesma disciplina;
 	- Curso Haskell para iniciantes - Marcos Castro;
+
+## Testando
